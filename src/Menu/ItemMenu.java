@@ -1,24 +1,27 @@
 package Menu;
 public class ItemMenu {
+    private String codigo;
     private String nome;
     private String descricao;
     private double preco;
-    private boolean status;  // true se o item est� dispon�vel, false se n�o est�
+    private boolean status;
 
-    
-
-    public ItemMenu(String nome, String descricao, double preco, boolean status) {
+    public ItemMenu(String codigo, String nome, String descricao, double preco, boolean status) {
+        this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.status = status;
     }
-    
 
     // getters
-    public String getNome() {
-        return nome;
-    }
+        public String getCodigo() {
+            return codigo;
+        }
+
+        public String getNome() {
+            return nome;
+        }
 
     public String getDescricao() {
         return descricao;
@@ -49,9 +52,9 @@ public class ItemMenu {
         this.status = status;
     }
 
-    // Para facilitar a impress�o
+    // Para facilitar a impressão
     @Override
     public String toString() {
-        return "Nome: " + nome + ", Descricao: " + descricao + ", Preco: " + preco + ", Disponivel: " + (status ? "Sim" : "Nao");
+        return "Nome: " + nome + ", Descrição: " + descricao + ", Preço: " + preco + ", Disponível: " + (status ? "Sim" : "Não");
     }
 }

@@ -12,10 +12,10 @@ public class AtualizadorStatusItem {
 
     public void atualizarStatus() {
         String nomeDoItem = JOptionPane.showInputDialog("Digite o nome do item que deseja atualizar o status:");
-        boolean novoStatus = JOptionPane.showConfirmDialog(null, "O item esta disponovel?", "Disponibilidade", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean novoStatus = JOptionPane.showConfirmDialog(null, "O item está disponível?", "Disponibilidade", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 
         if (!gerenciadorMenu.atualizarStatusItem(nomeDoItem, novoStatus)) {
-            JOptionPane.showMessageDialog(null, "Item nao encontrado. Tente novamente.");
+            JOptionPane.showMessageDialog(null, "Item não encontrado. Tente novamente.");
         }
     }
 }
