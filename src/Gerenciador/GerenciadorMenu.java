@@ -11,36 +11,74 @@ public class GerenciadorMenu {
         this.menu = new ArrayList<>();
     }
 
-    public void adicionarItem(ItemMenu item) {
+    public boolean adicionarItem(ItemMenu item) {
+        for (ItemMenu i : menu) {
+            if (i.getCodigo().equals(item.getCodigo())) {
+                return false;  
+            }
+        }
         menu.add(item);
+        return true;
     }
 
     public List<ItemMenu> listarItens() {
         return new ArrayList<>(menu);
     }
 
-    public boolean atualizarItem(String nome, String novaDescricao, double novoPreco, boolean novoStatus) {
+    public ItemMenu getItemPorCodigo(String codigo) {
         for (ItemMenu item : menu) {
-            if (item.getNome().equals(nome)) {
-                item.setDescricao(novaDescricao);
-                item.setPreco(novoPreco);
-                item.setStatus(novoStatus);
-                return true;  // atualização bem sucedida
+            if (item.getCodigo().equals(codigo)) {
+                return item;
             }
         }
-        return false;  // não foi encontrado nenhum item com esse nome
+        return null;  // nenhum item encontrado com este código
     }
 
-    public boolean removerItem(String nome) {
-        return menu.removeIf(item -> item.getNome().equals(nome));
-    }
-
-    public boolean atualizarStatusItem(String nomeItem, boolean novoStatus) {
+    public ItemMenu getItemPorNome(String nome) {
         for (ItemMenu item : menu) {
-            if (item.getNome().equals(nomeItem)) {
-                item.setStatus(novoStatus);
-                return true;  // item encontrado e status atualizado
+            if (item.getNome().equalsIgnoreCase(nome)) {
+                return item;
             }
+        }
+        return null;  // nenhum item encontrado com este nome
+    }
+
+    public boolean atualizarItem(String codigo, String novaDescricao, double novoPreco, boolean novoStatus) {
+        ItemMenu item = getItemPorCodigo(codigo);
+        if (item != null) {
+            item.setDescricao(novaDescricao);
+            item.setPreco(novoPreco);
+            item.setStatus(novoStatus);
+            return true;  // atualização bem sucedida
+        }
+        return false;  // não foi encontrado nenhum item com esse código
+    }
+
+    public boolean itemExiste(String codigo) {
+        for (ItemMenu item : menu) {
+            if (item.getCodigo().equals(codigo)) {
+                return true;
+            }
+        }
+        return false;
+    
+    
+    }
+    public boolean removerItem(String codigo) {
+        ItemMenu item = getItemPorCodigo(codigo);
+        if (item != null) {
+            menu.remove(item);
+            return true;
+        }
+        return false;
+    }
+    
+
+    public boolean atualizarStatusItem(String codigo, boolean novoStatus) {
+        ItemMenu item = getItemPorCodigo(codigo);
+        if (item != null) {
+            item.setStatus(novoStatus);
+            return true;  // item encontrado e status atualizado
         }
         return false;  // item não encontrado
     }
