@@ -1,4 +1,5 @@
 package Gerenciador;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +32,14 @@ public class GerenciadorMenu {
                 return item;
             }
         }
-        return null;  // nenhum item encontrado com este código
+        return null;
     }
 
-    public ItemMenu getItemPorNome(String nome) {
-        for (ItemMenu item : menu) {
-            if (item.getNome().equalsIgnoreCase(nome)) {
-                return item;
-            }
+    public ItemMenu getItemPorIndice(int indice) {
+        if (indice >= 0 && indice < menu.size()) {
+            return menu.get(indice);
         }
-        return null;  // nenhum item encontrado com este nome
+        return null;
     }
 
     public boolean atualizarItem(String codigo, String novaDescricao, double novoPreco, boolean novoStatus) {
@@ -49,9 +48,9 @@ public class GerenciadorMenu {
             item.setDescricao(novaDescricao);
             item.setPreco(novoPreco);
             item.setStatus(novoStatus);
-            return true;  // atualização bem sucedida
+            return true;
         }
-        return false;  // não foi encontrado nenhum item com esse código
+        return false;
     }
 
     public boolean itemExiste(String codigo) {
@@ -61,9 +60,8 @@ public class GerenciadorMenu {
             }
         }
         return false;
-    
-    
     }
+    
     public boolean removerItem(String codigo) {
         ItemMenu item = getItemPorCodigo(codigo);
         if (item != null) {
@@ -72,14 +70,13 @@ public class GerenciadorMenu {
         }
         return false;
     }
-    
 
     public boolean atualizarStatusItem(String codigo, boolean novoStatus) {
         ItemMenu item = getItemPorCodigo(codigo);
         if (item != null) {
             item.setStatus(novoStatus);
-            return true;  // item encontrado e status atualizado
+            return true;
         }
-        return false;  // item não encontrado
+        return false;
     }
 }
