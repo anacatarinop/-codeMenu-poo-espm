@@ -15,7 +15,7 @@ public class GerenciadorMenu {
     public boolean adicionarPrato(Prato prato) {
         for (Prato p : menu) {
             if (p.getCodigo().equals(prato.getCodigo())) {
-                return false;  
+                return false;
             }
         }
         menu.add(prato);
@@ -61,7 +61,7 @@ public class GerenciadorMenu {
         }
         return false;
     }
-    
+
     public boolean removerPrato(String codigo) {
         Prato prato = getPratoPorCodigo(codigo);
         if (prato != null) {
@@ -78,5 +78,21 @@ public class GerenciadorMenu {
             return true;
         }
         return false;
+    }
+
+    public String getMenuCliente() {
+        if (menu.isEmpty()) {
+            return "Nenhum prato cadastrado.";
+        }
+
+        StringBuilder menuCliente = new StringBuilder();
+        for (Prato prato : menu) {
+            if (prato.getStatus()) {
+                menuCliente.append("Nome: ").append(prato.getNome()).append("\n")
+                        .append("Descrição: ").append(prato.getDescricao()).append("\n")
+                        .append("Preço: ").append(prato.getPreco()).append("\n\n");
+            }
+        }
+        return menuCliente.toString();
     }
 }
