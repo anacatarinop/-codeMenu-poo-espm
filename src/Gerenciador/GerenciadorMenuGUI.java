@@ -203,16 +203,19 @@ public class GerenciadorMenuGUI {
                     } else {
                         JOptionPane.showMessageDialog(null, "Nenhum prato cadastrado.");
                     }
-            
+        
                     String escolhaCliente = JOptionPane.showInputDialog(null,
                             "Selecione uma opção:\n"
-                            + "1: Voltar para Tela Principal\n",
+                            + "1: Voltar para Tela Principal\n"
+                            + "2: Fazer Pedido\n",
                             "Menu Cliente",
                             JOptionPane.PLAIN_MESSAGE);
-            
+        
                     if (escolhaCliente.equals("1")) {
                         JOptionPane.showMessageDialog(null, "Voltando para a tela principal.");
                         return;
+                    } else if (escolhaCliente.equals("2")) {
+                       
                     }
                 }
             }
